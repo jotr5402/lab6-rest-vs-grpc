@@ -1,0 +1,39 @@
+syntax = "proto2";
+
+message AddMsg {
+  required int32 a = 1;
+  required int32 b = 2;
+}
+
+message RawImageMsg {
+  required bytes img = 1;
+}
+
+message DotProductMsg {
+  repeated float a = 1;
+  repeated float b = 2;
+}
+  
+message JsonImageMsg {
+  required string img = 1;
+}
+
+message AddReply {
+  required int32 sum = 1;
+}
+
+message DotProductReply {
+  required float dotproduct = 1;
+}
+
+message ImageReply {
+  required int32 width  = 1;
+  required int32 height = 2;
+}
+
+service GrpcService {
+  rpc Add(AddMsg)               returns (AddReply);
+  rpc RawImage(RawImageMsg)     returns (ImageReply);
+  rpc DotProduct(DotProductMsg) returns (DotProductReply);
+  rpc JsonImage(JsonImageMsg)   returns (ImageReply);
+}
